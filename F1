@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>極速下的流體藝術｜F1 空氣力學探索</title>
+
+  <style>
+    :root {
+      --bg: #080a0f;
+      --panel: #111722;
+      --red: #ff3038;
+      --white: #f4f6fa;
+      --muted: #aab4c3;
+      --cyan: #58d9ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.75;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #080a0fee;
+      border-bottom: 1px solid #2b3545;
+      padding: 12px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: var(--red);
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--white);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      background: var(--red);
+    }
+
+    .hero {
+      min-height: 75vh;
+      padding: 90px 7%;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(100deg, #080a0f, #111722);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1.15;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    section {
+      padding: 65px 7%;
+      scroll-margin-top: 80px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid #2b3545;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card h3 {
+      color: var(--red);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 7px;
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--red);
+    }
+
+    canvas {
+      width: 100%;
+      background: #070b12;
+      border: 1px solid #2b3545;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 60px 6%;
+      }
+
+      section {
+        padding: 45px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 網站導覽列 -->
+  <header class="topbar">
+    <div class="brand"><span>F1</span> / AERO LAB</div>
+
+    <nav>
+      <a href="#home">首頁</a>
+      <a href="#physics">物理原理</a>
+      <a href="#generations">車型演進</a>
+      <a href="#simulator">互動模擬</a>
+      <a href="#reflection">學習反思</a>
+    </nav>
+  </header>
+
+  <!-- 首頁 -->
+  <section class="hero" id="home">
+    <div>
+      <p>HIGH SCHOOL INDEPENDENT STUDY</p>
+
+      <h1>
+        極速下的<br>
+        <span>流體藝術</span>
+      </h1>
+
+      <p>
+        跨時代 F1 賽車造型與空氣力學探索。
+        從車翼、車底流道到主動式空氣力學，
+        理解氣流如何影響賽車的速度與抓地力。
+      </p>
+
+      <a class="btn" href="#physics">開始探索</a>
+    </div>
+  </section>
+
+  <!-- 物理原理 -->
+  <section id="physics">
+    <h2>認識 F1 的空氣力學秘密</h2>
+
+    <div class="grid">
+      <article class="card">
+        <h3>下壓力 Downforce</h3>
+        <p>
+          空氣對賽車產生向下的合力，
+          增加輪胎對地面的正向負載，
+          有助於提升高速過彎時的抓地力。
+        </p>
+        <p>概念公式：F ∝ ½ρv²A</p>
+      </article>
+
+      <article class="card">
+        <h3>空氣阻力 Drag</h3>
+        <p>
+          空氣阻力會消耗推進功率，
+          影響賽車的加速與最高速度。
+        </p>
+        <p>公式：F = ½ρv²CᴅA</p>
+      </article>
+
+      <article class="card">
+        <h3>伯努利原理</h3>
+        <p>
+          在理想化流動條件下，
+          流速與靜壓之間存在關係。
+          真實賽車還需要考慮黏性、渦流
+          與氣流分離等因素。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>文氏管效應</h3>
+        <p>
+          車底流道會改變氣流速度與壓力分布，
+          配合擴散器管理氣流，
+          形成有利於產生下壓力的壓力差。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 車型演進 -->
+  <section id="generations">
+    <h2>四世代 F1 賽車比較</h2>
+
+    <div class="grid">
+      <article class="card">
+        <h3>Lotus 79｜1978</h3>
+        <p>
+          利用車底流道與側裙控制氣流，
+          是早期地面效應設計的代表。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Ferrari F2004｜2004</h3>
+        <p>
+          V10 引擎與當代空力設計的代表，
+          展現高性能賽車的整合工程。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Red Bull RB18｜2022</h3>
+        <p>
+          採用新一代地面效應概念，
+          車底通道是產生下壓力的重要部分。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Mercedes W17｜2026</h3>
+        <p>
+          配合 2026 年規則，
+          採用可調整前翼與後翼的主動式空力概念。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 互動模擬器 -->
+  <section id="simulator">
+    <h2>F1 空氣力學互動模擬器</h2>
+
+    <div class="card">
+      <label for="speed">
+        車速：<span id="speedLabel">200</span> km/h
+      </label>
+
+      <input
+        id="speed"
+        type="range"
+        min="60"
+        max="340"
+        value="200"
+        step="10"
+      >
+
+      <label for="wing">
+        空力設定：<span id="wingLabel">60</span>%
+      </label>
+
+      <input
+        id="wing"
+        type="range"
+        min="20"
+        max="100"
+        value="60"
+        step="5"
+      >
+
+      <h3>相對下壓力指數</h3>
+      <p id="down">—</p>
+
+      <h3>相對阻力指數</h3>
+      <p id="drag">—</p>
+
+      <canvas
+        id="flow"
+        width="700"
+        height="260"
+      ></canvas>
+
+      <p>
+        注意：此模擬器採用簡化數學模型，
+        不代表真實 F1 車輛的測試數據。
+      </p>
+    </div>
+  </section>
+
+  <!-- 學習反思 -->
+  <section id="reflection">
+    <h2>自主學習心得與反思</h2>
+
+    <div class="grid">
+      <article class="card">
+        <h3>探究收穫</h3>
+        <p>
+          透過 F1 賽車，我將課堂中的物理概念
+          與真實工程設計連結起來，
+          了解下壓力與空氣阻力之間的取捨。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>遇到的挑戰</h3>
+        <p>
+          流體力學涉及許多變因，
+          因此我將問題拆分成車速、
+          車翼與車底流道等部分來理解。
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>未來展望</h3>
+        <p>
+          未來希望進一步學習 CAD 建模、
+          CFD 流場分析與機械工程相關知識。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    F1 AERO LAB｜高中自主學習成果網站
+  </footer>
+
+  <script>
+    const speed = document.getElementById("speed");
+    const wing = document.getElementById("wing");
+
+    const speedLabel = document.getElementById("speedLabel");
+    const wingLabel = document.getElementById("wingLabel");
+
+    const down = document.getElementById("down");
+    const drag = document.getElementById("drag");
+
+    function updateSimulation() {
+      const v = Number(speed.value);
+      const w = Number(wing.value);
+
+      speedLabel.textContent = v;
+      wingLabel.textContent = w;
+
+      // 相對於 100 km/h 的速度平方比例
+      const speedFactor = (v / 100) ** 2;
+
+      // 簡化的相對下壓力與阻力模型
+      const downforce = speedFactor * w / 60;
+      const dragForce = speedFactor * (0.55 + w / 100);
+
+      down.textContent = downforce.toFixed(2);
+      drag.textContent = dragForce.toFixed(2);
+
+      drawFlow(v, w);
+    }
+
+    function drawFlow(v, w) {
+      const canvas = document.getElementById("flow");
+      const ctx = canvas.getContext("2d");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 畫出簡化的車身輪廓
+      ctx.fillStyle = "#ff3038";
+      ctx.beginPath();
+      ctx.moveTo(180, 145);
+      ctx.lineTo(250, 130);
+      ctx.lineTo(340, 135);
+      ctx.lineTo(420, 125);
+      ctx.lineTo(490, 145);
+      ctx.lineTo(430, 160);
+      ctx.lineTo(250, 160);
+      ctx.closePath();
+      ctx.fill();
+
+      // 車輪
+      ctx.fillStyle = "#05070b";
+      ctx.beginPath();
+      ctx.arc(270, 165, 18, 0, Math.PI * 2);
+      ctx.arc(435, 165, 18, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 示意氣流線
+      ctx.strokeStyle = "#58d9ff";
+      ctx.lineWidth = 2;
+
+      for (let i = 0; i < 7; i++) {
+        const y = 30 + i * 30;
+
+        ctx.beginPath();
+        ctx.moveTo(10, y);
+        ctx.bezierCurveTo(
+          100, y - w * 0.3,
+          140, y - w * 0.3,
+          210, y
+        );
+        ctx.bezierCurveTo(
+          350, y - 10,
+          450, y - w * 0.1,
+          650, y
+        );
+        ctx.stroke();
+      }
+    }
+
+    speed.addEventListener("input", updateSimulation);
+    wing.addEventListener("input", updateSimulation);
+
+    updateSimulation();
+  </script>
+
+</body>
+</html>
